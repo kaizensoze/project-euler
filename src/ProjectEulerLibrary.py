@@ -72,22 +72,18 @@ def nthPrime(n):
         
     return primes.pop()
 
-def getPrimes(limit):
-    primes = [2, 3, 5, 7, 11, 13, 17, 19]
-    curr = 20
-    prime = True
-        
-    while curr < limit:
-        for x in primes:
-            if curr % x == 0:
-                prime = False
-                break
-        if prime:
-            primes.append(curr)
-        curr = curr + 1
-        prime = True
-        
-    return primes
+def getPrimes(n):    
+    sieve = [True]*n  
+    for x in range(4, n, 2):  
+        sieve[x] = False  
+    # any multiple of num above sqrt(n) is also a multiple of a  
+    # lower prime, hence has already been eliminated  
+    for num in range(3, int(sqrt(n)) + 1, 2):  
+        if sieve[num]:
+            for y in range(num**2, n, 2*num):  
+                sieve[y] = False  
+    result = [x for x in range(2, n) if sieve[x]]  
+    return result  
 
 def maxPalindromeProduct():
     a = 999
