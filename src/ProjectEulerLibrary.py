@@ -72,7 +72,7 @@ def nthPrime(n):
         
     return primes.pop()
 
-def getPrimes(n):    
+def getPrimes(n):
     sieve = [True]*n  
     for x in range(4, n, 2):  
         sieve[x] = False  
