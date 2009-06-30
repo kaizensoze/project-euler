@@ -164,7 +164,7 @@ def primeFactorize(n):
     while val > 1:
         for x in range(1, val+1):
             if isPrime(x) and val % x == 0:
-                val = val / x
+                val = int(val / x)
                 primes.append(x)
                 break    
     return primes
@@ -384,8 +384,15 @@ def isPandigital(n):
     if len(set([int(x) for x in str(n)])) != len(str(n)):
         return False
     
-    digits = sorted([int(x) for x in str(n)])
-    return reduce(lambda x,y: x*y, digits) == factorial(len(str(n)))
+    digits = [int(x) for x in str(n)]
+    
+    digits.sort()
+    for i,x in enumerate(digits):
+        if i > 0 and digits[i] - digits[i-1] != 1:
+            return False
+    
+    return True
+#    return reduce(lambda x,y: x-y, digits) == factorial(len(str(n)))
 
 def permute(s):
     if len(s) == 1:
