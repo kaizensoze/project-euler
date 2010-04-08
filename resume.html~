@@ -1,0 +1,136 @@
+<html>
+<head>
+    <style type="text/css">
+        body {
+            font-family: Serif;
+            font-size: .82em;
+            width: 770px;
+            margin-left: 75px;
+        }
+        hr {
+            width: 29.5%;
+            margin-bottom: 20px;
+        }
+        .header {
+            text-align: center;
+            width: 750px;
+        }
+        .name {
+            font-size: 1.70em;
+        }
+        div.email {
+            font-size: 1em;
+        }
+        img.email {
+            width: 112px;/*120px;*/
+            height: 17px;/*18px;*/
+        }
+        .title {
+            font-weight: bold;
+        }
+        .indent1 {
+            margin-left: 30px;
+        }
+        .indent2 {
+            margin-left: 30px;
+        }
+        .indent3 {
+            margin-left: 13px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="name">JOSEPH M. GALLO</div>
+        <!--<img class="email" src="email.png">-->
+        <div class="email">gallo.j@gmail.com</div>
+        <!--<div style="font-size: 12px; margin: 2px 0px -4px -15px;">(<a href="resume.pdf">pdf</a>)&nbsp;&nbsp;&nbsp;(<a href="resume.doc">doc</a>)</div>-->
+        <hr>
+    </div><p></p>
+    <div id="tech">
+        <div class="title">TECHNICAL KNOWLEDGE</div>
+        <div class="indent1">
+            <div>Java, Python, Perl, PHP, C++/C, Apache, Tomcat, MVC, JUnit, Cactus, Ant, JavaScript (jQuery, Dojo), Ajax,</div>
+            <div>XML, JSON, HTML, CSS, SVN, Git, Trac, Nagios, Oracle, MySQL, PostgreSQL, SQLite, NSIS, Wise, Regex</div>
+            <div>Scheme, MATLAB, ARM Assembly, Linux, Windows</div>
+        </div>
+    </div><p></p>
+    <div id="work">
+        <div class="title">WORK-RELATED EXPERIENCE</div>
+        <div class="indent1">
+            <div class="title">Programmer/Analyst (Berkeley, CA : August 2008 - April 2010)</div>
+            <div>UC Berkeley Graduate Division (<a href="http://grad.berkeley.edu/" target="_blank">http://grad.berkeley.edu</a>)</div>
+            <div class="indent2">
+                <div>&#149;&nbsp;Worked on <a href="https://gradlink.berkeley.edu/GLOW/" target="_blank">GLOW</a>, a J2EE web app with Oracle back-end
+                     that provides graduate student-related</div>
+                <div class="indent3">information and services to students, faculty, and staff.</div>
+                <div>&#149;&nbsp;GLOW received the Larry L. Sautter Award for Innovation in Information Technology.</div>
+                <div>&#149;&nbsp;Worked on several different GLOW projects including online fellowship competition, compliance reports,</div>
+                <div class="indent3">departmentally restricted awards, and a fee remissions payment system.</div>
+                <div>&#149;&nbsp;Wrote series of Jakarta Cactus unit tests.</div>
+                <div>&#149;&nbsp;Migrated from Jaguar server to Apache/Tomcat.</div>
+            </div><p></p>
+            <div class="title">Programmer [Contract] (San Francisco, CA : April 2008 - August 2008)</div>
+            <div>CherryBlossoms (<a href="http://www.blossoms.com/" target="_blank">http://www.blossoms.com/</a>)</div>
+            <div class="indent2">
+                <div>&#149;&nbsp;Wrote web-based chat with LAMP backend.</div>
+            </div>
+            <div>Askmoses (<a href="http://www.askmoses.com/" target="_blank">http://www.askmoses.com/</a>)</div>
+            <div class="indent2">
+                <div>&#149;&nbsp;Wrote popup dialog allowing user to submit question.</div>
+            </div>
+            <div>ireminder (<a href="http://ireminder.com/" target="_blank">http://ireminder.com/</a>)</div>
+            <div class="indent2">
+                <div>&#149;&nbsp;Refactored site code (php/html).</div>                
+            </div><p></p>
+            <div class="title">Software Developer (San Francisco, CA : September 2007 - March 2008)</div>
+            <div>blinkx, Inc. (<a href="http://www.blinkx.com" target="_blank">http://www.blinkx.com</a>)</div>
+            <div class="indent2">
+                <div>&#149;&nbsp;Worked on blinkx beat, an interactive client application that brings latest video content from blinkx</div>
+                <div class="indent3">site to the desktop. Application was done in C++, using Win32 API, and the installer in NSIS.</div>
+                <div>&#149;&nbsp;Helped merge blinkx beat with pico, an application that shows videos related to contents of viewed web</div>
+                <div class="indent3">page. Used Ajax, CSS, HTML for the front-end and converted pico's installer, written in Wise, to NSIS.</div>
+                <div>&#149;&nbsp;Worked on Firefox extension that uses DownloadHelper to extract media source url's of videos normally</div>
+                <div class="indent3">unobtainable by usual means (HTML, XML).</div>
+                <div>&#149;&nbsp;Wrote several web crawlers in perl to fetch video content from numerous sites. Maintained media content</div>
+                <div class="indent3">via MySQL.</div>
+            </div><p></p>
+            <div class="title">Software Developer / Research Assistant (Amherst, MA : 2006 - 2007)</div>
+            <div>Professors Ed Riseman and Allen Hanson as [NSF-funded] ASSIST Project leaders</div>
+            <div class="indent2">
+                <div>&#149;&nbsp;Designed and developed address book application intended for elderly users, with simple Java</div>
+                <div class="indent3">Swing GUI front-end, featuring large accessible widgets and SQLite database back-end.</div>
+                <div>&#149;&nbsp;Helped integrate suite of applications (fall detection, object finder, videophone, calendar, address book)</div>
+                <div class="indent3">intended to prolong an elderly user's ability to live independently in a setting of his/her choice.</div>
+            </div><p></p>
+            <div class="title">Programmer / Research Assistant (Amherst, MA : 2006 - 2007)</div>
+            <div>Professor Allen Hanson as Project Advisor, Grad Student Vidit Jain</div>
+            <div class="indent2">
+                <div>&#149;&nbsp;Worked on and tested hyperfeature based face recognition system, already implemented by grad</div>
+                <div class="indent3">student at the time, with regard to its possible applications in the ASSIST Project.</div>
+                <div>&#149;&nbsp;Added XML functionality to conveniently parse identifier generator parameters and model image list.</div>
+                <div>&#149;&nbsp;Assisted in conversion of MATLAB to C++ (OpenCV) and validation of converted code.</div>
+            </div><p></p>
+            <div class="title">Programmer (Amherst, MA : Fall 2004)</div>
+            <div>Professor Allen Hanson as Independent Study Advisor</div>
+            <div class="indent2">
+                <div>&#149;&nbsp;Designed and developed Java Swing GUI application illustrating generation and traversal of a maze</div>
+                <div class="indent3">using recursive backtracker algorithm and the reflected changes to underlying stack data structure.</div>
+            </div><p></p>
+        </div>
+    </div><p></p>
+    <div id="education">
+        <div class="title">EDUCATION</div>
+        <div class="indent1">
+            <div class="title">University of Massachusetts Amherst (Amherst, MA : 2003 - 2007)</div>
+            <div>Bachelor of Science, May 2007</div>
+            <div>Double Major in Computer Science and Mathematics</div>
+            <div>Mathematics Concentration in Mathematical Computing</div>
+            <div>Graduated Cum Laude with Commonwealth College Honors</div>
+            <div>Departmental Honors in Computer Science</div>
+            <div>GPA: 3.49</div>
+        </div>
+    </div>
+</body>
+</html>
+
