@@ -16,13 +16,14 @@ def constDiffCheck(x):
         for z in x:
             if y != z:
                 diff = z - y
-                if diff in diffDict.keys() \
-                        and z in diffDict[diff]:
-                    count += 1
-                    if count >= 2:
-                        print(diffDict)
-                        return
-                diffDict[diff] = (z,y)
+                if diff > 0:
+                    if diff not in diffDict.keys():
+                        diffDict[diff] = set([])
+                    
+                    diffDict[diff] = diffDict[diff].union(set([y,z]))
+    for x in diffDict.values():
+        if len(x) == 3:
+            print(x)
 
 def run():
     primes = set([x for x in range(1000, 9999+1) if isPrime(x)])

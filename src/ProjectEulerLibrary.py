@@ -144,6 +144,21 @@ def factorize(n, proper=False):
         factors.add(n)
     
     while x < n:
+    
+    return triangle
+
+# refactored this to not allow duplicates
+# not sure what effects this has on all
+# pre-existing functions that use this
+# in already solved projecteuler problems
+# if proper==True, do not treat n as its own factor
+def factorize(n, proper=False):
+    x = 2
+    factors = set([1])
+    if n != 1 and not proper:
+        factors.add(n)
+    
+    while x < n:
         if x in factors:
             break
         
@@ -158,7 +173,7 @@ def factorize(n, proper=False):
 
     return factors
 
-def primeFactorize(n):
+def primeFactorize2(n):
     val = n
     primes = []
     while val > 1:
@@ -385,19 +400,24 @@ def isPandigital(n):
         return False
     
     digits = [int(x) for x in str(n)]
-    
     digits.sort()
+    
+    # for 1-9 pandigital only restriction
+    if digits[0] != 1:
+        return False
+    
     for i,x in enumerate(digits):
         if i > 0 and digits[i] - digits[i-1] != 1:
-            return False
-    
-    return True
-#    return reduce(lambda x,y: x-y, digits) == factorial(len(str(n)))
-
-def permute(s):
-    if len(s) == 1:
-        yield s
     else:
         for x in permute(s[1:]):
             for i in range(len(x)+1):
                 yield x[:i] + s[0] + x[i:]
+
+def pentagonals():
+    i = 1
+    while 1:
+        yield(pentagonal(i))
+        i += 1
+
+def pentagonal(x):
+    return int((x * (3*x - 1)) / 2)
