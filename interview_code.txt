@@ -431,7 +431,37 @@ elementary data structures (stacks/queues/linked_lists/):
                 x = x.next
             L.tail = x
 
-        unflatten(L):
+        unflatten(L): [O(n)]
+            x = L.head
+            explore_and_separate(x)
+            while x.next != null:
+                x = x.next
+            tail = x
+
+        explore_and_separate(n):
+            x = n
+            while x != null:
+                if x.child != null:
+                    x.child.prev.next = null
+                    x.child.prev = null
+                    explore_and_separate(x.child)
+                x = x.next
+
+        unflatten2(L): [O(n)] (this version kinda sucks)
+            x = L.head
+            while x != null:
+                if x.child != null
+                    children.add(x.child)
+                x = x.next
+
+            for child in children:
+                child.prev.next = null
+                child.prev = null
+
+            x = L.head
+            while x.next != null:
+                x = x.next
+            tail = x
             
         detect_cycle(L): [O(n^2)]
             x = L.head
@@ -444,7 +474,7 @@ elementary data structures (stacks/queues/linked_lists/):
                 x = x.next
             return false
 
-        detect_cycle2(L):
+        detect_cycle2(L): [O(n)]
             nodes = set([])
             x = L.head
             while x != null:
