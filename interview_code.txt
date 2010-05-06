@@ -186,6 +186,11 @@ binary search tree:
                 x = x.right
         return null
 
+    height(x): [O(n)]
+        if x == null:
+            return -1
+        return max(height(x.left), height(x.right)) + 1
+
 heaps:
     h = O(log n)
 
