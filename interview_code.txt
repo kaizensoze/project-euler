@@ -168,6 +168,24 @@ binary search tree:
                 x = x.right
         return x
 
+    lowest_common_ancestor(n1, n2): [O(lg n)]
+        if n1 < n2:
+            small = n1
+            big = n2
+        else:
+            small = n2
+            big = n1
+
+        x = root
+        while x != null:
+            if small <= x <= big:
+                return x
+            elif x > small and x > big:
+                x = x.left
+            else:
+                x = x.right
+        return null
+
 heaps:
     h = O(log n)
 
