@@ -191,6 +191,15 @@ binary search tree:
             return -1
         return max(height(x.left), height(x.right)) + 1
 
+B-tree:
+    bsts designed to work well on direct-access secondary storage devices
+    similar to red-black trees but better at minimizing disk io ops
+    b-trees can have many children
+
+B+tree:
+    similar to B-tree only the records are leaves
+    used to store metadata (including db indices, etc.)
+
 heaps:
     h = O(log n)
 
@@ -269,6 +278,15 @@ heaps:
             size(A)++
             A[size(A)] = -INF
             increase(A, size(A), k)
+
+    binomial heap:
+        collection of binomial trees
+        has a union method
+        other than that, just use binary heap
+
+    fibonacci heap:
+        ops that do not involve deleting an element are O(1) instead of O(lg n)
+        more complex to program so they're mainly theoretical
 
 quicksort:
     quicksort(A, p, r):
@@ -764,6 +782,13 @@ combinations:
 
         for x in sorted(results):
             print(''.join([z for z in x]))
+
+databases:
+    innoDB:
+        ACID-compliant transactions
+        crash recovery by replaying logs
+        interally caches reads/writes (vs. MyISAM that leaves it to the OS)
+        data rows stored physically in primary key order (vs. MyISAM that stores them in order they were added)
 
 number theory:
     division thm:
