@@ -783,6 +783,39 @@ combinations:
         for x in sorted(results):
             print(''.join([z for z in x]))
 
+telephone translation:
+    translations = {
+        1: "1",
+        2: "ABC",
+        3: "DEF",
+        4: "GHI",
+        5: "JKL",
+        6: "MNO",
+        7: "PRS",
+        8: "TUV",
+        9: "WXY",
+        0: "0"
+    }
+
+    def telephone_translate_iter(s):
+        solutions = []
+        for d in s:
+            digit = int(d)
+            for solution in solutions:
+                for option_index in range(len(translations[digit])):
+                    solution += getCharKey(digit, option_index)
+        return solutions
+
+    def getCharKey(digit, position):
+        if digit === 1:
+            return "1";
+        elif digit == 0:
+            return "0"
+        else:
+            return translations[digit][position]
+
+    def telephone_translate_recur(s):
+
 databases:
     innoDB:
         ACID-compliant transactions
