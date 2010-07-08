@@ -1,50 +1,56 @@
 import gmpy
 import itertools
 
-LIMIT = 10
+LIMIT = 1000
 
-def concat(a, b):
-    return int(str(a)+str(b))
+def concat(x, y):
+    return int(str(x)+str(y))
 
-def getNext(primes, n=None):
-    global LIMIT
-
-    if n is not None:
-        primes = (x for x in range(n,LIMIT) if gmpy.is_prime(x) and x > n)
-    try:
-        res = primes.next()
-    except StopIteration:
-        res = -1
-    return (primes, res)
-
-def check(nums, o):
-    for p in nums:
-        if not gmpy.is_prime(concat(o,p)) \
-           or not gmpy.is_prime(int(str(p)+str(o))):
-            return False
-    return True
+def concatenable(x, y):
+    check_one = concat(x, y)
+    check_two = concat(y, x)
+    return gmpy.is_prime(check_one) and gmpy.is_prime(check_two)
 
 def main():
     global LIMIT
-    primes = (x for x in range(3,LIMIT) if gmpy.is_prime(x))
-    nums = []
+    m = {}
+    primes = [x for x in range(3, LIMIT) if gmpy.is_prime(x)]
+    for x in primes:
+        for y in primes:
+            if x == y:
+                continue
 
-    while len(nums) < 5:
-        primes, n = getNext(primes)
-        print(n)
-        here = 'dragons'
-        if n == -1:
-            primes, n = getNext(primes, nums.pop())
-        if check(nums, n):
-            nums.append(n)
-        print(nums)
-    #print(nums)
+            if concatenable(x, y):
+                if x not in m:
+                    m[x] = set([x])
+                m[x].add(y)
+
+                if y not in m:
+                    m[y] = set([y])
+                m[y].add(x)
+
+    for x in m.iterkeys():
+        count = 0
+        solution = set([x])
+        for y in m[x]:
+            if x != y and len(m[x] & m[y]) >= 5:
+                solution.add(y)
+                count += 1
+                if count == 5:
+                    print(solution)
+                    return
+    '''
+    print(sorted([x for x in m[3]]))
+    print(sorted([x for x in m[7]]))
+    print(sorted([x for x in m[109]]))
+    print(sorted([x for x in m[673]]))
+    a = m[3]
+    b = m[7]
+    c = m[109]
+    d = m[673]
+    print(sorted(a & b & c & d))
+    '''
 
 if __name__ == "__main__":
     main()
 
-'''
-(3, 7, 109, 673)
-need to remove from nums if LIMIT is reached
-does it need to really backtrack?
-'''
