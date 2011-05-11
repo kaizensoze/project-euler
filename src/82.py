@@ -1,140 +1,74 @@
+#!/usr/bin/python
 
-dim = [0, 0]
-i = 0
+import copy
 
-curr = [complex(0,0)]
+dim = {'width':-1, 'height':-1}
+grid = []
+grid_min = []
 
-UP = complex(-1,0)
-DOWN = complex(1,0)
-RIGHT = complex(0,1)
-
-d = {}
-mins = {}
-
-def load():
+def load_file():
     global dim
+    global grid, grid_min
 
-    f = open('../matrix82Test.txt', 'r')
+    f = open('../input/matrix82Test.txt', 'r')
     lines = f.readlines()
 
-    dim[0] = len(lines)
-    dim[1] = len(lines[0].split(','))
+    dim['height'] = len(lines)
+    dim['width'] = len(lines[0].split(','))
 
     for i,x in enumerate(lines):
+        grid.append([])
+        grid_min.append([])
         for j,y in enumerate(x.split(',')):
-            d[complex(i,j)] = int(y)
+            grid[i].append(int(y))
+            if j == 0:
+                grid_min[i].append(int(y))
+            else:
+                grid_min[i].append(float("INF"))
 
-def moveOut(pos):
-    global curr, d, UP, DOWN, RIGHT, i
+def inside_grid(row, col):
+    global dim
+    global grid
+    return row >= 0 and col >= 0 and row < dim['height'] and col < dim['width']
 
-    if pos.imag == dim[1] - 1:
-        return
+def modify_if_necessary(move):
+    """ move is row-col pair """
+    global grid
+    global grid_min
+    row,col,name = move
+    if inside_grid(row, col):
+        if name == 'right':
+            sum_to_compare = grid_min[row][col-1] + grid[row][col]
+            if sum_to_compare < grid_min[row][col]:
+                grid_min[row][col] = sum_to_compare
+        elif name == 'right_and_up':
+            sum_to_compare = grid_min[row+1][col-1] + grid[row+1][col] + grid[row][col]
+            if sum_to_compare < grid_min[row][col]:
+                grid_min[row][col] = sum_to_compare
+        elif name == 'right_and_down':
+            sum_to_compare = grid_min[row-1][col-1] + grid[row-1][col] + grid[row][col]
+            if sum_to_compare < grid_min[row][col]:
+                grid_min[row][col] = sum_to_compare
 
-    if i % 3 == 0:
-        next1 = pos + UP
-        next2 = pos + DOWN
-        next3 = pos + RIGHT
-    elif i % 3 == 1:
-        next1 = pos + RIGHT
-        next2 = pos + DOWN
-        next3 = pos + UP
-    else:
-        next1 = pos + DOWN
-        next2 = pos + RIGHT
-        next3 = pos + UP
+def process():
+    global dim
+    global grid, grid_min
 
-    if next1 in d:
-        curr.append(next1)
-    if next2 in d:
-        curr.append(next2)
-    if next3 in d:
-        curr.append(next3)
-
-    i += 1
-
-def prev(pos, action):
-    return pos + -1*action
-
-def step(pos):
-    global d, mins, UP, RIGHT, DOWN, i
-
-    posD = prev(pos, UP)
-    posL = prev(pos, RIGHT)
-    posU = prev(pos, DOWN)
-
-    if posD in d:
-        if posD in mins:
-            posD_val = mins[posD]
-        else:
-            posD_val = d[posD]
-    else:
-        posD_val = None
-
-    if posL in d:
-        if posL in mins:
-            posL_val = mins[posL]
-        else:
-            posL_val = d[posL]
-    else:
-        posL_val = None
-
-    if posU in d:
-        if posU in mins:
-            posU_val = mins[posU]
-        else:
-            posU_val = d[posU]
-    else:
-        posU_val = None
-
-    val = d[pos]
-
-    # DLU
-    # 000
-    # 001
-    # 010
-    # 100
-    # 011
-    # 101
-    # 110
-    # 111
-    
-    if posD_val is None and posL_val is None and posU_val is None:
-        minVal = val
-    elif posD_val is None and posL_val is None:
-        minVal = val + posU_val
-    elif posD_val is None and posU_val is None:
-        minVal = val + posL_val
-    elif posL_val is None and posU_val is None:
-        minVal = val + posD_val
-    elif posD_val is None:
-        minVal = min(val + posL_val, val + posU_val)
-    elif posL_val is None:
-        minVal = min(val + posD_val, val + posU_val)
-    elif posU_val is None:
-        minVal = min(val + posD_val, val + posL_val)
-    else:
-        minVal = min(val + posU_val, val + posL_val, val + posU_val)
-
-    mins[pos] = minVal
-
-    moveOut(pos)
+    for row in range(dim['height']):
+        for col in range(dim['width']):
+            right = (col, row+1, 'right')
+            right_and_up = (col-1, row+1, 'right_and_up')
+            right_and_down = (col+1, row+1, 'right_and_down')
+            moves = [right, right_and_up, right_and_down]
+            #print(moves)
+            for move in moves:
+                modify_if_necessary(move)
+    print(grid_min)
 
 def run():
-    global dim, curr
+    load_file()
+    process()
 
-    load()
+if __name__ == "__main__":
+    run()
 
-    while len(curr) > 0:
-        c = curr.pop(0)
-        if c not in mins:
-            print(curr)
-            step(c)
-
-    endPos = complex(dim[0]-1, dim[1]-1)
-    res = 9999999999999999999999
-    for x in range(dim[0]):
-        if mins[complex(x,dim[1]-1)] < res:
-            res = mins[complex(x,dim[1]-1)]
-    print(res)
-
-run()
