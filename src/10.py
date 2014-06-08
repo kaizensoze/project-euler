@@ -3,6 +3,12 @@ Created on Apr 2, 2009
 
 @author: anon
 '''
-from ProjectEulerLibrary import sumOfPrimes
+import cProfile
 
-print(sumOfPrimes(2000000))
+from ProjectEulerLibrary import primeNumbers, sumOfPrimes
+
+primes = primeNumbers(10)
+print(primes)
+
+# cProfile.run('print(primeNumbers(10))')
+# cProfile.run('print(sumOfPrimes(10))') 
